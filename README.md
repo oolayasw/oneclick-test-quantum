@@ -1,84 +1,217 @@
-# Laboratorio de Modernizacion - BankScore2
+# Laboratorio de Modernización Asistida por IA - BankScore2
 
-## Objetivo del laboratorio
-Este laboratorio guia al practicante en el entendimiento inicial del assessment, validacion funcional de la aplicacion actual y arranque del proceso de modernizacion asistido por agente.
+## Objetivo del Laboratorio
 
-## 1) Estructura del folder
-En esta carpeta cada practicante encontrara dos folders principales:
+Este laboratorio permite experimentar un proceso completo de modernización asistida por IA utilizando la plataforma OneClick y su Cognitive Layer.
 
-- 01-Reporte-Tecnico: contiene todo el analisis realizado para construir la modernizacion (contexto, hallazgos, riesgos, recomendaciones y lineamientos del proceso).
-- App: contiene la aplicacion actual a modernizar.
+Durante el ejercicio los participantes trabajarán bajo el enfoque del **Patrón Centauro**, combinando criterio humano con capacidades de análisis, documentación y transformación impulsadas por IA.
 
-## 2) Que revisar primero
-1. Entrar a 01-Reporte-Tecnico y revisar los documentos en orden para entender:
-- contexto funcional y tecnico
-- alcance de modernizacion
-- restricciones del proceso
-- recomendaciones de arquitectura
+Al finalizar el laboratorio los participantes comprenderán:
 
-2. Entrar a App para validar la aplicacion actual en local y obtener una linea base funcional.
+- Cómo entender un sistema legado.
+- Cómo explorar y ejecutar una aplicación monolítica.
+- Cómo iniciar un proceso de modernización asistida.
+- Cómo aprovechar una capa cognitiva para acelerar el time-to-market y reducir el esfuerzo de análisis manual.
 
-## 3) Resumen previo del stack tecnologico encontrado en App
-A partir de la solucion existente, el stack identificado es:
+---
 
-- Plataforma: ASP.NET Core MVC
-- Version objetivo: .NET 5 (TargetFramework net5.0)
-- Lenguaje principal: C#
-- Frontend server-side: Razor Views (.cshtml)
-- Estructura: monolito web (una sola aplicacion web)
-- Sesion: Session de ASP.NET Core
-- Paquetes relevantes:
-  - Newtonsoft.Json 9.0.1
-  - System.Data.SqlClient 4.8.3
-- Configuracion de arranque local:
-  - https://localhost:5001
-  - http://localhost:5000
+# El Laboratorio se divide en 4 momentos
 
-Capacidades funcionales actuales identificadas:
-- Inicio de sesion
-- Gestion de solicitantes
-- Evaluacion de score bancario
-- Consulta de historial de evaluaciones
+## 1. Entendiendo el sistema
 
-## 4) Instructivo corto para levantar la aplicacion en local
-Prerequisitos:
-- Tener instalado .NET SDK 5.x (o un entorno con soporte para compilar y ejecutar net5.0)
-- Visual Studio o VS Code con herramientas de .NET
+### Estructura del ejercicio
 
-Pasos:
-1. Abrir la carpeta App.
-2. Restaurar dependencias:
-- dotnet restore
-3. Compilar:
-- dotnet build
-4. Ejecutar la aplicacion web:
-- dotnet run --project BankScoreEvaluator.Web/BankScoreEvaluator.Web.csproj
-5. Abrir en navegador:
-- https://localhost:5001 o http://localhost:5000
+Cada participante encontrará dos carpetas principales:
 
-Credenciales de demostracion presentes en la app:
-- admin / admin123
-- analista / analista2024
-- supervisor / pass1234
+```text
+01-Reporte-Tecnico
+App
+```
 
-Resultado esperado:
-- Se visualiza la pantalla de login y, al autenticarse, se puede navegar por solicitantes, evaluacion y historial.
+### 01-Reporte-Tecnico
 
-## 5) Inicio de modernizacion con agente
-Una vez revisada la estructura y validada la app en local:
+Contiene:
 
-1. En VS Code, seleccionar el agente OneClickGuardian en el chat.
-2. Solicitar el inicio del proceso con el siguiente texto sugerido:
-- Para iniciar lee el contexto del proyecto que se encuentra en la carpeta documentacion
+- Assessment técnico
+- Hallazgos arquitectónicos
+- Riesgos identificados
+- Recomendaciones
+- Estrategia de modernización
+- Artefactos generados por el Quick Scan
 
-## 6) Flujo esperado de la capa cognitiva (patron centauro)
-La capa cognitiva bajo el patron centauro iniciara con:
+### App
 
-1. Analisis completo del assessment y de la aplicacion actual.
-2. Definicion de arquitectura objetivo para la modernizacion.
-3. Ejecucion de la modernizacion de la aplicacion.
-4. Validacion funcional local.
-5. Proceso de despliegue en Azure, respetando los lineamientos definidos en el reporte tecnico.
+Contiene la aplicación que será modernizada durante el laboratorio.
 
-## 7) Nota operativa para sesiones de capacitacion
-Durante el despliegue, al crear el grupo de recursos se debe usar un nombre unico por ejecucion concatenando un nombre base con un GUID (por ejemplo: rg-bankscore-<guid>) para evitar colisiones cuando varios practicantes comparten suscripcion.
+### Qué revisar primero
+
+1. Entrar a `01-Reporte-Tecnico`
+2. Revisar los documentos en orden para entender:
+   - Contexto funcional
+   - Contexto técnico
+   - Alcance de modernización
+   - Restricciones
+   - Riesgos
+   - Arquitectura recomendada
+
+### Stack tecnológico identificado
+
+| Componente | Tecnología |
+|------------|------------|
+| Plataforma | ASP.NET Core MVC |
+| Framework | .NET 5 |
+| Lenguaje | C# |
+| Frontend | Razor Views |
+| Arquitectura | Monolito Web |
+| Persistencia de sesión | ASP.NET Session |
+| Base tecnológica | Server Side Rendering |
+
+### Capacidades funcionales actuales
+
+- Inicio de sesión
+- Gestión de solicitantes
+- Evaluación de score bancario
+- Historial de evaluaciones
+
+### Configuración de GitHub Copilot en VS Code
+
+#### Paso 1
+Iniciar sesión con GitHub.
+
+![Paso 1 - Captura 1](img/GH-1.png)
+![Paso 1 - Captura 2](img/GH-2.png)
+![Paso 2 - Captura 1](img/GH-3.png)
+
+#### Paso 2
+Validar que Copilot se encuentre activo.
+
+![Paso 2 - Captura 2](img/GH-4.png)
+
+---
+
+## 2. Explorando el sistema
+### Prompt sugerido para Copilot
+
+```text
+Por favor levanta en ambiente local la aplicación que se encuentra en la carpeta App
+```
+
+![Paso 2 - Captura 1](img/legacy.png)
+
+### Acceder a la aplicación
+
+```text
+https://localhost:5001
+http://localhost:5000
+```
+
+### Credenciales de demostración
+
+```text
+admin / admin123
+analista / analista2024
+supervisor / pass1234
+```
+
+
+---
+
+## 3. Modernizando el sistema
+
+### Iniciando la capa cognitiva
+
+Seleccionar en VS Code:
+
+```text
+OneClick Guardian
+```
+
+![Paso 2 - Captura 1](img/GH-5.png)
+![Paso 2 - Captura 1](img/GH-6.png)
+![Paso 2 - Captura 1](img/GH-7.png)
+
+### Prompt inicial recomendado
+
+```text
+Para iniciar lee el contexto del proyecto que se encuentra en la carpeta documentacion
+```
+
+### Prompt para análisis profundo
+
+```text
+Usando toda la documentación del assessment y el código fuente:
+
+1. Construye un mapa de componentes.
+2. Identifica bounded contexts.
+3. Detecta acoplamientos críticos.
+4. Identifica oportunidades de modernización.
+5. Sugiere patrones cloud-native.
+6. Genera un backlog priorizado de modernización.
+```
+
+📸 Screenshot
+
+### Flujo esperado de la Cognitive Layer
+
+1. Lectura del Assessment.
+2. Lectura del Quick Scan.
+3. Comprensión de la aplicación.
+4. Identificación de deuda técnica.
+5. Propuesta arquitectónica.
+6. Estrategia de modernización.
+7. Generación de backlog.
+8. Preparación para despliegue cloud.
+
+---
+
+## 4. Documentando y compartiendo conocimiento
+
+### Prompt recomendado
+
+```text
+Genera la documentación ejecutiva y técnica del proceso realizado.
+
+Incluye:
+
+- Estado actual (As-Is)
+- Estado objetivo (To-Be)
+- Riesgos identificados
+- Arquitectura propuesta
+- Decisiones arquitectónicas
+- Roadmap de modernización
+- Beneficios esperados
+- Impacto en time-to-market
+- Recomendaciones para despliegue en Azure
+```
+
+📸 Screenshot
+
+---
+
+## Beneficios esperados del laboratorio
+
+✅ Entendimiento acelerado de aplicaciones legacy.
+
+✅ Uso práctico del Patrón Centauro.
+
+✅ Aplicación de una Cognitive Layer para modernización.
+
+✅ Generación automatizada de artefactos técnicos.
+
+✅ Reducción significativa del tiempo de análisis.
+
+✅ Aceleración del proceso de modernización y time-to-market.
+
+✅ Construcción de documentación viva basada en IA.
+
+---
+
+## Nota operativa para sesiones de capacitación
+
+Cuando se despliegue la solución en Azure, cada participante deberá crear un Resource Group único utilizando un GUID para evitar conflictos entre laboratorios concurrentes.
+
+Ejemplo:
+
+```text
+rg-bankscore-4f7a2e91
+```
