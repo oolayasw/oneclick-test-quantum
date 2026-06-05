@@ -1,0 +1,43 @@
+@model BankScoreEvaluator.Web.Models.Applicant
+@{
+    ViewData["Title"] = "Detalle Solicitante";
+    var score = ViewBag.Score as BankScoreEvaluator.Web.Models.ScoreResult;
+}
+
+<h2>Detalle del Solicitante</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-3 mb-3">
+            <p><strong>Id:</strong> @Model.Id</p>
+            <p><strong>Nombre:</strong> @Model.FullName</p>
+            <p><strong>Documento:</strong> @Model.Document</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Edad:</strong> @Model.Age</p>
+            <p><strong>Ingreso mensual:</strong> $@Model.MonthlyIncome</p>
+            <p><strong>Gastos mensuales:</strong> $@Model.MonthlyExpenses</p>
+            <p><strong>Deuda total:</strong> $@Model.TotalDebt</p>
+            <p><strong>Historial (meses):</strong> @Model.CreditHistoryMonths</p>
+            <p><strong>Mora previa:</strong> @Model.HasPreviousDefault</p>
+            <p><strong>Prestamos activos:</strong> @Model.NumberOfLoans</p>
+            <p><strong>Tipo empleo:</strong> @Model.EmploymentType</p>
+        </div>
+    </div>
+    @if (score != null)
+    {
+        <div class="col-md-6">
+            <div class="card p-3 mb-3 border-success">
+                <h5>Ultimo Score</h5>
+                <p><strong>Score:</strong> <span class="badge bg-primary fs-5">@score.Score / 1000</span></p>
+                <p><strong>Categoria:</strong> @score.Category</p>
+                <p><strong>Recomendacion:</strong> @score.Recommendation</p>
+            </div>
+        </div>
+    }
+</div>
+
+<form asp-controller="Score" asp-action="Evaluate" method="post" class="d-inline">
+    <input type="hidden" name="applicantId" value="@Model.Id" />
+    <button class="btn btn-success">Calcular Score</button>
+</form>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

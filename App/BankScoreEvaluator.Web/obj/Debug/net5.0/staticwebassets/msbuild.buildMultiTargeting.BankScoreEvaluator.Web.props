@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\BankScoreEvaluator.Web.props" />
+</Project>

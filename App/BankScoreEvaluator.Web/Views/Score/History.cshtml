@@ -1,0 +1,36 @@
+@model System.Collections.Generic.List<BankScoreEvaluator.Web.Models.ScoreResult>
+@{
+    ViewData["Title"] = "Historial de Scores";
+}
+
+<h2>Historial de Evaluaciones</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>SolicitanteId</th>
+            <th>Score</th>
+            <th>Categoria</th>
+            <th>Ratio D/I</th>
+            <th>Recomendacion</th>
+            <th>Evaluado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.ApplicantId</td>
+                <td><strong>@s.Score</strong></td>
+                <td>@s.Category</td>
+                <td>@s.DebtIncomeRatio</td>
+                <td>@s.Recommendation</td>
+                <td>@s.EvaluatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Volver al motor</a>

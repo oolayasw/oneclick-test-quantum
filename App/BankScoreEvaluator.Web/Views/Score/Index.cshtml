@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Motor de Evaluacion";
+    var applicants = ViewBag.Applicants as System.Collections.Generic.List<BankScoreEvaluator.Web.Models.Applicant>;
+    var scores = ViewBag.Scores as System.Collections.Generic.List<BankScoreEvaluator.Web.Models.ScoreResult>;
+}
+
+<h2>Motor de Evaluacion de Score</h2>
+<p class="text-muted">Seleccione un solicitante para calcular su score crediticio.</p>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card p-3">
+            <h5>Calcular Score</h5>
+            <form asp-action="Evaluate" method="post">
+                <div class="mb-3">
+                    <label>Solicitante</label>
+                    <select class="form-control" name="applicantId" required>
+                        @if (applicants != null)
+                        {
+                            @foreach (var a in applicants)
+                            {
+                                <option value="@a.Id">@a.FullName (@a.Document)</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Evaluar score</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <h5>Ultimas evaluaciones</h5>
+        <table class="table table-sm table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>SolicitanteId</th>
+                    <th>Score</th>
+                    <th>Categoria</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (scores != null)
+                {
+                    @foreach (var s in scores)
+                    {
+                        <tr>
+                            <td>@s.ApplicantId</td>
+                            <td><strong>@s.Score</strong></td>
+                            <td>@s.Category</td>
+                            <td>@s.EvaluatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

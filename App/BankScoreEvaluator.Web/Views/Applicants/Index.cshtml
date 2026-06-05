@@ -1,0 +1,54 @@
+@model System.Collections.Generic.List<BankScoreEvaluator.Web.Models.Applicant>
+@{
+    ViewData["Title"] = "Solicitantes";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Registro de Solicitantes</h2>
+    <a class="btn btn-primary" asp-action="Create">Registrar solicitante</a>
+</div>
+
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-info">@TempData["Msg"]</div>
+}
+
+<table class="table table-bordered table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Email</th>
+            <th>Ingreso/mes</th>
+            <th>Empleo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Id</td>
+                <td>@a.FullName</td>
+                <td>@a.Document</td>
+                <td>@a.Email</td>
+                <td>$@a.MonthlyIncome</td>
+                <td>@a.EmploymentType</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@a.Id" class="btn btn-sm btn-outline-secondary">Detalle</a>
+                    <a asp-controller="Score" asp-action="Evaluate" asp-route-applicantId="@a.Id"
+                       onclick="this.closest('form') || event.preventDefault(); document.getElementById('evalForm@(a.Id)').submit();"
+                       class="btn btn-sm btn-outline-success">Evaluar</a>
+                    <form id="evalForm@(a.Id)" asp-controller="Score" asp-action="Evaluate" method="post" style="display:none">
+                        <input type="hidden" name="applicantId" value="@a.Id" />
+                    </form>
+                    <form asp-action="DeleteConfirmed" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@a.Id" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

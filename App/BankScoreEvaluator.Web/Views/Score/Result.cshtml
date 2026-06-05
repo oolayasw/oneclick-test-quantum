@@ -1,0 +1,42 @@
+@model BankScoreEvaluator.Web.Models.ScoreResult
+@{
+    ViewData["Title"] = "Resultado Score";
+    string badgeColor = Model.Score >= 800 ? "success" : Model.Score >= 600 ? "primary" : Model.Score >= 400 ? "warning" : "danger";
+}
+
+<h2>Resultado de Evaluacion</h2>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card text-center p-4 mb-3">
+            <h4>Score Final</h4>
+            <div class="display-1 fw-bold text-@badgeColor">@Model.Score</div>
+            <p class="text-muted">de 1000 puntos</p>
+            <span class="badge bg-@badgeColor fs-5">@Model.Category</span>
+            <hr />
+            <p class="mt-2"><strong>Recomendacion:</strong><br />@Model.Recommendation</p>
+            <p><strong>Ratio deuda/ingreso:</strong> @Model.DebtIncomeRatio x</p>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="card p-3">
+            <h5>Desglose por componente</h5>
+            <table class="table table-sm">
+                <thead><tr><th>Componente</th><th>Puntaje</th><th>Maximo</th></tr></thead>
+                <tbody>
+                    <tr><td>Capacidad de pago</td><td>@Model.ScoreCapacidad</td><td>300</td></tr>
+                    <tr><td>Historial crediticio</td><td>@Model.ScoreHistorial</td><td>250</td></tr>
+                    <tr><td>Nivel de endeudamiento</td><td>@Model.ScoreEndeudamiento</td><td>200</td></tr>
+                    <tr><td>Tipo de empleo</td><td>@Model.ScoreEmpleo</td><td>150</td></tr>
+                    <tr><td>Edad</td><td>@Model.ScoreEdad</td><td>100</td></tr>
+                    <tr class="table-dark fw-bold"><td>TOTAL</td><td>@Model.Score</td><td>1000</td></tr>
+                </tbody>
+            </table>
+            <hr />
+            <small class="text-danger">SQL usado (mala practica): <code>@Model.RawSqlUsed</code></small>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-2">Volver al motor</a>
+<a asp-controller="Applicants" asp-action="Index" class="btn btn-outline-dark mt-2">Ir a solicitantes</a>
