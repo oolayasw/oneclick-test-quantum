@@ -136,7 +136,7 @@ OneClick Guardian
 ### Prompt inicial recomendado
 
 ```text
-Para iniciar lee el contexto del proyecto que se encuentra en la carpeta documentacion
+Para iniciar quiero que ejecutes la modernizacion segun el contexto que se encuentra en la carpeta documentacion
 ```
 
 ### Prompt para análisis profundo
@@ -186,8 +186,6 @@ Incluye:
 - Impacto en time-to-market
 - Recomendaciones para despliegue en Azure
 ```
-
-📸 Screenshot
 
 ---
 

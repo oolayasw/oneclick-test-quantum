@@ -110,8 +110,8 @@ Construir los componentes necesarios respetando:
 - Aplica siempre patrones de diseño
 - Separar por vistas cada una de las funcionalidades a construir
 - El inicio de sesión no puede compartir vista con otra funcionalidad y es obligatorio realizar el login para poder acceder a todo el sistema
+- Asegura que el backend congenta una politica de CORS que permita la comunicación con el frontend (obligatoria)
 
-Además, configurar CORS para permitir la comunicación entre frontend y backend.
 
 ## Fase 4: Validación Funcional Local
 
