@@ -105,7 +105,7 @@ https://localhost:5001
 http://localhost:5000
 ```
 
-### Credenciales de demostración
+### Credenciales de prueba
 
 ```text
 admin / admin123
@@ -126,9 +126,12 @@ Seleccionar en VS Code:
 OneClick Guardian
 ```
 
-![Paso 2 - Captura 1](img/GH-5.png)
-![Paso 2 - Captura 1](img/GH-6.png)
+
 ![Paso 2 - Captura 1](img/GH-7.png)
+---
+![Paso 2 - Captura 1](img/GH-6.png)
+---
+![Paso 2 - Captura 1](img/GH-5.png)
 
 ### Prompt inicial recomendado
 
@@ -149,7 +152,7 @@ Usando toda la documentación del assessment y el código fuente:
 6. Genera un backlog priorizado de modernización.
 ```
 
-📸 Screenshot
+
 
 ### Flujo esperado de la Cognitive Layer
 
