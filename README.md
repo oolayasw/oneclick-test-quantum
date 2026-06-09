@@ -74,18 +74,26 @@ Contiene la aplicación que será modernizada durante el laboratorio.
 - Historial de evaluaciones
 
 ### Configuración de GitHub Copilot en VS Code
-
 #### Paso 1
-Iniciar sesión con GitHub.
-
-![Paso 1 - Captura 1](img/GH-1.png)
-![Paso 1 - Captura 2](img/GH-2.png)
-![Paso 2 - Captura 1](img/GH-3.png)
+Abrir VS Code para iniciar con el taller
+![Paso 1 - Captura 1](img/OPVSCode.png)
 
 #### Paso 2
+Abrir en un nuevo workspace la carpeta que contiene el taller
+![Paso 2 - Captura 1](img/OPVSCode2.png)
+![Paso 2 - Captura 2](img/OPVSCode3.png)
+
+#### Paso 3
+Iniciar sesión con GitHub.
+
+![Paso 3 - Captura 1](img/GH-1.png)
+![Paso 3 - Captura 2](img/GH-2.png)
+![Paso 3 - Captura 1](img/GH-3.png)
+
+#### Paso 4
 Validar que Copilot se encuentre activo.
 
-![Paso 2 - Captura 2](img/GH-4.png)
+![Paso 4 - Captura 2](img/GH-4.png)
 
 ---
 
