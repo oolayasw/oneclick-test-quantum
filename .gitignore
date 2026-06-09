@@ -1,0 +1,22 @@
+# Build artifacts
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Test results and coverage
+TestResults/
+*.coverage
+*.coveragexml
+
+# IDE folders
+.vs/
+
+# NuGet and package caches
+*.nupkg
+*.snupkg
+
+# General caches
+*.cache
