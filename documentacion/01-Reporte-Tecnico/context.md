@@ -65,7 +65,7 @@ El frontend moderno debe diseñarse con enfoque en usabilidad, claridad operativ
 
 ## Alcance del Proceso
 
-Ejecutar el sisguiente paso a paso de manera obligatoria sin afectar el contexto.
+Ejecutar el sisguiente paso a paso de manera obligatoria sin afectar el contexto asegurando la ejecución de la implementacion completa.
 
 1. Analizar completamente el assessment para entender contexto, funcionalidades, alcance y proceso de modernización esperado.
 2. No crear, modificar ni eliminar archivos durante la fase inicial de entendimiento.
