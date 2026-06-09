@@ -19,7 +19,53 @@ Antes de cualquier cambio, se debe realizar un análisis completo de la informac
 - Está prohibida la ejecución de pruebas automatizadas, de calidad o de seguridad (incluyendo SAST/DAST, escaneo de vulnerabilidades y validaciones equivalentes).
 - La única validación permitida es funcional y manual, levantando las aplicaciones en modo debug/local.
 
+## Lineamiento de UX
+
+El frontend moderno debe diseñarse con enfoque en usabilidad, claridad operativa y separación estricta de responsabilidades por pantalla. Para esto te puedes apoyar en @OneClickUX
+
+### Principios UX obligatorios
+
+- Diseñar interfaces modernas, limpias y consistentes, con jerarquía visual clara y lenguaje visual uniforme en todo el sistema.
+- Priorizar tareas frecuentes del usuario minimizando clics, pasos innecesarios y carga cognitiva.
+- Mantener consistencia en componentes, patrones de interacción, validaciones y mensajes.
+- Garantizar accesibilidad base: contraste adecuado, foco visible de teclado, etiquetas claras en campos y textos comprensibles.
+- Asegurar diseño responsivo para escritorio y móvil, sin perder funcionalidad ni legibilidad.
+
+### Separación de funcionalidades por pantalla (obligatorio)
+
+- No mezclar funcionalidades distintas en una misma pantalla.
+- No concentrar todas las funcionalidades en una pantalla única tipo "dashboard operativo total".
+- Cada pantalla debe tener un único objetivo funcional principal.
+- Cada caso de uso relevante debe mapearse a una vista o flujo dedicado (por ejemplo: Login, Registro de solicitante, Consulta de solicitantes, Evaluación de score, Resultado, Historial).
+- El inicio de sesión debe ser una pantalla independiente y puerta de entrada obligatoria al sistema.
+- Las acciones secundarias de una pantalla no pueden convertirse en funcionalidades completas dentro de la misma vista; si escalan en complejidad deben moverse a una vista propia.
+
+### Navegación y arquitectura de información
+
+- Definir navegación explícita y predecible entre pantallas (menú, breadcrumbs o rutas claras según aplique).
+- Mantener nombres de menú y títulos de pantalla alineados con el lenguaje de negocio.
+- Evitar rutas ambiguas o redundantes; cada funcionalidad debe tener un punto de entrada claro.
+- Preservar contexto del usuario al navegar (estado de filtros, retorno a listados, confirmaciones de salida cuando aplique).
+
+### Formularios, feedback y prevención de errores
+
+- Formularios con validación en tiempo real y mensajes de error accionables por campo.
+- Usar máscaras, ayudas de formato y valores por defecto cuando reduzcan errores de captura.
+- Confirmar acciones críticas (por ejemplo, envíos definitivos o cambios irreversibles).
+- Mostrar estados del sistema de forma visible: carga, éxito, error y vacío de datos.
+- Proveer mensajes funcionales orientados al usuario, evitando errores técnicos sin contexto.
+
+### Criterios mínimos de aceptación UX
+
+- Todas las funcionalidades del assessment están separadas por vistas y rutas dedicadas.
+- Ninguna pantalla contiene flujos completos de más de una funcionalidad principal.
+- El usuario puede completar cada tarea clave sin ambiguedad y sin navegación confusa.
+- La experiencia es consistente entre pantallas y dispositivos.
+- Se realiza validación funcional manual de usabilidad para verificar claridad, navegación y separación de funcionalidades antes del despliegue.
+
 ## Alcance del Proceso
+
+Ejecutar el sisguiente paso a paso de manera obligatoria sin afectar el contexto.
 
 1. Analizar completamente el assessment para entender contexto, funcionalidades, alcance y proceso de modernización esperado.
 2. No crear, modificar ni eliminar archivos durante la fase inicial de entendimiento.
