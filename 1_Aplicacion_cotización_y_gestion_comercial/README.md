@@ -1,4 +1,4 @@
-# QuoteFlow - Aplicación de Cotización y Gestión Comercial
+﻿# QuoteFlow - Aplicación de Cotización y Gestión Comercial
 
 > **APLICACION DE EJERCICIO DE MODERNIZACION**
 > Esta aplicación usa **versiones OBSOLETAS** e implementa **MALAS PRACTICAS** de desarrollo intencionalmente para ser usada como caso de estudio de modernización.
@@ -15,7 +15,7 @@
 
 ## Malas Prácticas Implementadas
 
-### Backend (`backend/src/app.ts`)
+### Backend (`App/backend/src/app.ts`)
 - **God File**: Todo el backend en un solo archivo de 400+ líneas
 - **Estado Global Mutable**: Datos en variables `var` globales (sin base de datos)
 - **Sin JWT real**: Tokens son strings concatenados `"FAKE_TOKEN_1_timestamp"`
@@ -26,7 +26,7 @@
 - **Sin validación**: Entradas no sanitizadas
 - **Lógica de negocio en routes**: Cálculos de totales dentro de los handlers HTTP
 
-### Frontend (`frontend/src/app/`)
+### Frontend (`App/frontend/src/app/`)
 - **God Service** (`app.service.ts`): Un solo servicio maneja Auth, Clientes, Productos, Cotizaciones y Dashboard
 - **God Components**: Componentes con 20+ propiedades y múltiples responsabilidades
 - **`any` en todo**: Sin tipado TypeScript útil
@@ -49,7 +49,7 @@
 ### 1. Backend
 
 ```bash
-cd backend
+cd App/backend
 npm install
 npm run dev
 # Servidor en http://localhost:3000
@@ -58,7 +58,7 @@ npm run dev
 ### 2. Frontend
 
 ```bash
-cd frontend
+cd App/frontend
 npm install --legacy-peer-deps
 
 # Con Node.js 17+ (incluyendo Node 24), requiere --openssl-legacy-provider
@@ -91,7 +91,7 @@ npx ng serve --proxy-config proxy.conf.json --port 4200
 
 ## API Endpoints (Backend)
 
-```
+```text
 POST /api/auth/login
 GET  /api/clientes
 POST /api/clientes
