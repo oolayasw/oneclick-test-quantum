@@ -1,26 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oscar.olaya\\projects\\OneClik\\bank\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj": {}
+    "C:\\git\\Quantum\\oneclick-test-quantum\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oscar.olaya\\projects\\OneClik\\bank\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj": {
+    "C:\\git\\Quantum\\oneclick-test-quantum\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oscar.olaya\\projects\\OneClik\\bank\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj",
+        "projectUniqueName": "C:\\git\\Quantum\\oneclick-test-quantum\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj",
         "projectName": "BankScoreEvaluator.Web",
-        "projectPath": "C:\\Users\\oscar.olaya\\projects\\OneClik\\bank\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj",
-        "packagesPath": "C:\\Users\\oscar.olaya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oscar.olaya\\projects\\OneClik\\bank\\App\\BankScoreEvaluator.Web\\obj\\",
+        "projectPath": "C:\\git\\Quantum\\oneclick-test-quantum\\App\\BankScoreEvaluator.Web\\BankScoreEvaluator.Web.csproj",
+        "packagesPath": "C:\\Users\\oscar.cardenas\\.nuget\\packages\\",
+        "outputPath": "C:\\git\\Quantum\\oneclick-test-quantum\\App\\BankScoreEvaluator.Web\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\oscar.olaya\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\oscar.cardenas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/IntergrupoAutomation/_packaging/Automation.Components/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -38,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net5.0": {
@@ -64,24 +72,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -90,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311\\RuntimeIdentifierGraph.json"
         }
       }
     }
