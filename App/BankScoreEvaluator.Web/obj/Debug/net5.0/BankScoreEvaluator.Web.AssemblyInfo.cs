@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankScoreEvaluator.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+809d42f4a09ee1197eaba0addd49c372a5ec8af8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+676b565c80c7e194b1a5de885cf35ecb337e7f3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankScoreEvaluator.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankScoreEvaluator.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
