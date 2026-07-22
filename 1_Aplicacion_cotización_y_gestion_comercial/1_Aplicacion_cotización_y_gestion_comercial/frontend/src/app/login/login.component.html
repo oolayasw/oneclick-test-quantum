@@ -1,0 +1,74 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+  <div class="col-md-4 col-sm-10">
+    <div class="card shadow-lg border-0">
+      <div class="card-body p-5">
+        <!-- Header -->
+        <div class="text-center mb-4">
+          <i class="fas fa-file-invoice-dollar fa-3x text-warning mb-3"></i>
+          <h2 class="font-weight-bold text-dark">QuoteFlow</h2>
+          <p class="text-muted small">Sistema de Cotización y Gestión Comercial</p>
+          <span class="badge badge-warning small">Angular 12 EOL • Node Express 4.16 • TypeScript 4.3</span>
+        </div>
+
+        <!-- Error -->
+        <div *ngIf="errorMsg" class="alert alert-danger alert-dismissible" role="alert">
+          <i class="fas fa-exclamation-circle mr-2"></i>{{errorMsg}}
+          <button type="button" class="close" (click)="errorMsg=''">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <!-- Formulario -->
+        <div class="form-group">
+          <label class="font-weight-bold small text-uppercase text-muted">Correo electrónico</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            </div>
+            <input type="email" class="form-control" [(ngModel)]="email"
+                   placeholder="correo@empresa.com" (keyup.enter)="login()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="font-weight-bold small text-uppercase text-muted">Contraseña</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+            </div>
+            <input [type]="mostrarPassword ? 'text' : 'password'" class="form-control"
+                   [(ngModel)]="password" placeholder="••••••••" (keyup.enter)="login()">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" (click)="mostrarPassword=!mostrarPassword">
+                <i class="fas" [class.fa-eye]="!mostrarPassword" [class.fa-eye-slash]="mostrarPassword"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-warning btn-block btn-lg font-weight-bold mt-4"
+                (click)="login()" [disabled]="cargando">
+          <span *ngIf="cargando"><i class="fas fa-spinner fa-spin mr-2"></i>Ingresando...</span>
+          <span *ngIf="!cargando"><i class="fas fa-sign-in-alt mr-2"></i>Ingresar</span>
+        </button>
+
+        <!-- Cuentas demo - MALA PRACTICA: Credenciales en la UI -->
+        <hr class="my-4">
+        <p class="text-center text-muted small mb-2"><i class="fas fa-info-circle mr-1"></i>Cuentas de demostración:</p>
+        <div class="row">
+          <div class="col-6">
+            <button class="btn btn-outline-secondary btn-sm btn-block" (click)="usarCuentaDemoAsesor()">
+              <i class="fas fa-user mr-1"></i>Asesor
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-outline-secondary btn-sm btn-block" (click)="usarCuentaDemoSupervisor()">
+              <i class="fas fa-user-tie mr-1"></i>Supervisor
+            </button>
+          </div>
+        </div>
+        <p class="text-center text-muted mt-2" style="font-size:0.7rem;">password: 1234</p>
+      </div>
+    </div>
+  </div>
+</div>

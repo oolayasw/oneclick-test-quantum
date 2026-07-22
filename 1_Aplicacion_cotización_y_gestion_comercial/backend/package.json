@@ -1,0 +1,25 @@
+{
+  "name": "quoteflow-backend",
+  "version": "1.0.0",
+  "description": "Backend QuoteFlow - VERSIONES OBSOLETAS intencionalmente",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.1",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.16.1",
+    "@types/node": "^12.12.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^8.10.2",
+    "typescript": "~3.9.10"
+  }
+}

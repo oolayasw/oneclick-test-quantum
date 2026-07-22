@@ -1,0 +1,30 @@
+{
+  "name": "quoteflow-frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "node --openssl-legacy-provider node_modules/@angular/cli/bin/ng serve --proxy-config proxy.conf.json --port 4200",
+    "build": "node --openssl-legacy-provider node_modules/@angular/cli/bin/ng build",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.2.13",
+    "@angular/common": "~12.2.13",
+    "@angular/compiler": "~12.2.13",
+    "@angular/core": "~12.2.13",
+    "@angular/forms": "~12.2.13",
+    "@angular/platform-browser": "~12.2.13",
+    "@angular/platform-browser-dynamic": "~12.2.13",
+    "@angular/router": "~12.2.13",
+    "rxjs": "~6.6.7",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~12.2.13",
+    "@angular/cli": "~12.2.13",
+    "@angular/compiler-cli": "~12.2.13",
+    "typescript": "~4.3.5"
+  }
+}

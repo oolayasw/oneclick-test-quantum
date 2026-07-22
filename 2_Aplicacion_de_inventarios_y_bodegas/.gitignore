@@ -1,0 +1,31 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local database files
+*.db
+*.db-shm
+*.db-wal
+
+# Test / tool caches
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+# Logs / env
+*.log
+.env
+.env.*

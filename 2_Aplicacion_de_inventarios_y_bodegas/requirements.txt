@@ -1,0 +1,7 @@
+# MALA PRACTICA: versiones antiguas y sin pinear correctamente
+# Flask 2.2.x - version antigua (2023)
+flask==2.2.5
+werkzeug==2.2.3
+# Sin separar dependencias de dev/produccion
+# Sin lock file
+# Sin hashing de dependencias transitivas

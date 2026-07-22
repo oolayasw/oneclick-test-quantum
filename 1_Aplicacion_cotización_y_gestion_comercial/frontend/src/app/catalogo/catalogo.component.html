@@ -1,0 +1,270 @@
+<!-- PANTALLA 3: Catálogo y Listas de Precios -->
+<div class="row mb-3 align-items-center">
+  <div class="col">
+    <h3 class="page-title"><i class="fas fa-boxes mr-2 text-warning"></i>Catálogo y Listas de Precios</h3>
+  </div>
+</div>
+
+<!-- Alertas -->
+<div *ngIf="mensajeExito" class="alert alert-success alert-dismissible">
+  <i class="fas fa-check-circle mr-2"></i>{{mensajeExito}}
+  <button type="button" class="close" (click)="mensajeExito=''"><span>&times;</span></button>
+</div>
+<div *ngIf="mensajeError" class="alert alert-danger alert-dismissible">
+  <i class="fas fa-exclamation-circle mr-2"></i>{{mensajeError}}
+  <button type="button" class="close" (click)="mensajeError=''"><span>&times;</span></button>
+</div>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="tabActiva==='productos'" (click)="tabActiva='productos'; mostrarFormProducto=false; mensajeError=''">
+      <i class="fas fa-box mr-1"></i>Productos y Servicios
+      <span class="badge badge-warning ml-1">{{svc.productos.length}}</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="tabActiva==='listas'" (click)="tabActiva='listas'; mostrarFormLista=false; mensajeError=''">
+      <i class="fas fa-tags mr-1"></i>Listas de Precios
+      <span class="badge badge-warning ml-1">{{svc.listasPrecios.length}}</span>
+    </a>
+  </li>
+</ul>
+
+<!-- TAB: Productos -->
+<div *ngIf="tabActiva === 'productos'">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="input-group" style="max-width:400px">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="filtroProducto" placeholder="Buscar por código o nombre...">
+    </div>
+    <button class="btn btn-warning font-weight-bold" (click)="abrirFormProductoNuevo()">
+      <i class="fas fa-plus mr-1"></i>Nuevo Producto/Servicio
+    </button>
+  </div>
+
+  <!-- Formulario producto inline -->
+  <div *ngIf="mostrarFormProducto" class="card mb-4 border-warning shadow-sm">
+    <div class="card-header bg-warning text-dark">
+      <h5 class="mb-0"><i class="fas mr-2" [class.fa-plus]="!modoEdicionProducto" [class.fa-edit]="modoEdicionProducto"></i>
+        {{modoEdicionProducto ? 'Editar Producto/Servicio' : 'Nuevo Producto/Servicio'}}
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label><strong>Código *</strong></label>
+            <input type="text" class="form-control" [(ngModel)]="formProducto.codigo"
+                   placeholder="Ej: PROD-001" [disabled]="modoEdicionProducto">
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label><strong>Nombre *</strong></label>
+            <input type="text" class="form-control" [(ngModel)]="formProducto.nombre" placeholder="Nombre del producto o servicio">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Tipo</label>
+            <select class="form-control" [(ngModel)]="formProducto.tipo">
+              <option value="Producto">Producto</option>
+              <option value="Servicio">Servicio</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Descripción</label>
+            <input type="text" class="form-control" [(ngModel)]="formProducto.descripcion" placeholder="Descripción del producto">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label><strong>Precio Base (COP)</strong></label>
+            <input type="number" class="form-control" [(ngModel)]="formProducto.precio" min="0">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>IVA (%)</label>
+            <select class="form-control" [(ngModel)]="formProducto.impuesto">
+              <option [value]="0">0% - Excluido/Exento</option>
+              <option [value]="5">5%</option>
+              <option [value]="19">19% - Tarifa general</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4" *ngIf="modoEdicionProducto">
+          <div class="form-group">
+            <label>Estado</label>
+            <select class="form-control" [(ngModel)]="formProducto.estado">
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-light">
+      <button class="btn btn-warning mr-2" (click)="guardarProducto()">
+        <i class="fas fa-save mr-1"></i>{{modoEdicionProducto ? 'Guardar Cambios' : 'Crear'}}
+      </button>
+      <button class="btn btn-secondary" (click)="mostrarFormProducto=false; mensajeError=''">
+        <i class="fas fa-times mr-1"></i>Cancelar
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabla productos -->
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Tipo</th>
+              <th class="text-right">Precio Base</th>
+              <th class="text-center">IVA</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of productosFiltrados">
+              <td><code>{{p.codigo}}</code></td>
+              <td><strong>{{p.nombre}}</strong></td>
+              <td><small class="text-muted">{{p.descripcion}}</small></td>
+              <td>
+                <span class="badge" [class.badge-primary]="p.tipo==='Producto'" [class.badge-info]="p.tipo==='Servicio'">
+                  {{p.tipo}}
+                </span>
+              </td>
+              <td class="text-right font-weight-bold">{{formatearMoneda(p.precio)}}</td>
+              <td class="text-center">{{p.impuesto}}%</td>
+              <td>
+                <span class="badge" [class.badge-success]="p.estado==='activo'" [class.badge-secondary]="p.estado!=='activo'">
+                  {{p.estado}}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-outline-warning btn-action mr-1" (click)="abrirFormProductoEditar(p)" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-action" (click)="toggleEstadoProducto(p)"
+                        [title]="p.estado==='activo' ? 'Inactivar' : 'Activar'">
+                  <i class="fas" [class.fa-ban]="p.estado==='activo'" [class.fa-check]="p.estado!=='activo'"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="productosFiltrados.length === 0">
+              <td colspan="8" class="text-center text-muted py-4">
+                <i class="fas fa-box-open fa-2x mb-2 d-block"></i>No hay productos que mostrar
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Listas de Precios -->
+<div *ngIf="tabActiva === 'listas'">
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-warning font-weight-bold" (click)="mostrarFormLista=true; mensajeError=''">
+      <i class="fas fa-plus mr-1"></i>Nueva Lista de Precios
+    </button>
+  </div>
+
+  <!-- Formulario lista -->
+  <div *ngIf="mostrarFormLista" class="card mb-4 border-warning shadow-sm">
+    <div class="card-header bg-warning text-dark">
+      <h5 class="mb-0"><i class="fas fa-plus mr-2"></i>Nueva Lista de Precios</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label><strong>Nombre de la Lista *</strong></label>
+            <input type="text" class="form-control" [(ngModel)]="formLista.nombre" placeholder="Ej: Lista Corporativa 2025">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Segmento</label>
+            <select class="form-control" [(ngModel)]="formLista.segmento">
+              <option value="General">General</option>
+              <option value="Corporativo">Corporativo</option>
+              <option value="PYME">PYME</option>
+              <option value="Gobierno">Gobierno</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Vigencia Desde</label>
+            <input type="date" class="form-control" [(ngModel)]="formLista.vigenciaDesde">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Vigencia Hasta</label>
+            <input type="date" class="form-control" [(ngModel)]="formLista.vigenciaHasta">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Descuento Máximo (%)</label>
+            <input type="number" class="form-control" [(ngModel)]="formLista.descuentoMaximo" min="0" max="100">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-light">
+      <button class="btn btn-warning mr-2" (click)="guardarListaPrecios()">
+        <i class="fas fa-save mr-1"></i>Crear Lista
+      </button>
+      <button class="btn btn-secondary" (click)="mostrarFormLista=false; mensajeError=''">
+        <i class="fas fa-times mr-1"></i>Cancelar
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabla listas -->
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-3" *ngFor="let lista of svc.listasPrecios">
+      <div class="card shadow-sm h-100" [class.border-success]="lista.estado==='activa'" [class.border-secondary]="lista.estado!=='activa'">
+        <div class="card-header" [class.bg-success]="lista.estado==='activa'" [class.bg-secondary]="lista.estado!=='activa'" style="color:white">
+          <h6 class="mb-0"><i class="fas fa-tag mr-2"></i>{{lista.nombre}}</h6>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm table-borderless mb-0">
+            <tr><td class="text-muted">Segmento:</td><td><strong>{{lista.segmento}}</strong></td></tr>
+            <tr><td class="text-muted">Vigencia:</td><td>{{lista.vigenciaDesde}} al {{lista.vigenciaHasta}}</td></tr>
+            <tr><td class="text-muted">Desc. Máximo:</td><td><span class="badge badge-warning">{{lista.descuentoMaximo}}%</span></td></tr>
+            <tr>
+              <td class="text-muted">Estado:</td>
+              <td>
+                <span class="badge" [class.badge-success]="lista.estado==='activa'" [class.badge-secondary]="lista.estado!=='activa'">
+                  {{lista.estado}}
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="svc.listasPrecios.length === 0">
+      <div class="text-center text-muted py-5">
+        <i class="fas fa-tags fa-3x mb-3 d-block"></i>No hay listas de precios configuradas
+      </div>
+    </div>
+  </div>
+</div>

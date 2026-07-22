@@ -1,0 +1,277 @@
+<!-- PANTALLA 2: Gestión de Clientes -->
+
+<!-- Vista: Lista -->
+<div *ngIf="vista === 'lista'">
+  <div class="row mb-3 align-items-center">
+    <div class="col">
+      <h3 class="page-title"><i class="fas fa-users mr-2 text-warning"></i>Gestión de Clientes</h3>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-warning font-weight-bold" (click)="abrirFormularioNuevo()">
+        <i class="fas fa-plus mr-1"></i>Nuevo Cliente
+      </button>
+    </div>
+  </div>
+
+  <!-- Alertas -->
+  <div *ngIf="mensajeExito" class="alert alert-success alert-dismissible">
+    <i class="fas fa-check-circle mr-2"></i>{{mensajeExito}}
+    <button type="button" class="close" (click)="mensajeExito=''"><span>&times;</span></button>
+  </div>
+  <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible">
+    <i class="fas fa-exclamation-circle mr-2"></i>{{mensajeError}}
+    <button type="button" class="close" (click)="mensajeError=''"><span>&times;</span></button>
+  </div>
+
+  <!-- Formulario modal inline - MALA PRACTICA: sin componente modal separado -->
+  <div *ngIf="mostrarFormulario" class="card mb-4 border-warning shadow">
+    <div class="card-header bg-warning text-dark">
+      <h5 class="mb-0">
+        <i class="fas mr-2" [class.fa-plus]="!modoEdicion" [class.fa-edit]="modoEdicion"></i>
+        {{modoEdicion ? 'Editar Cliente' : 'Nuevo Cliente'}}
+      </h5>
+    </div>
+    <div class="card-body">
+      <div *ngIf="mensajeError" class="alert alert-danger small">{{mensajeError}}</div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label><strong>Identificación *</strong></label>
+            <input type="text" class="form-control" [(ngModel)]="form.identificacion"
+                   placeholder="Ej: 900123456-1" [disabled]="modoEdicion">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label><strong>Razón Social *</strong></label>
+            <input type="text" class="form-control" [(ngModel)]="form.razonSocial"
+                   placeholder="Nombre de la empresa">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Contacto</label>
+            <input type="text" class="form-control" [(ngModel)]="form.contacto"
+                   placeholder="Nombre del contacto principal">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" class="form-control" [(ngModel)]="form.correo"
+                   placeholder="contacto@empresa.com">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" class="form-control" [(ngModel)]="form.telefono"
+                   placeholder="Ej: 3001234567">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" class="form-control" [(ngModel)]="form.direccion"
+                   placeholder="Dirección completa">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Condición Tributaria</label>
+            <select class="form-control" [(ngModel)]="form.condicionTributaria">
+              <option value="NO_RESPONSABLE">No responsable de IVA</option>
+              <option value="RESPONSABLE_IVA">Responsable de IVA</option>
+              <option value="GRAN_CONTRIBUYENTE">Gran contribuyente</option>
+              <option value="REGIMEN_SIMPLE">Régimen simple</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="modoEdicion">
+          <div class="form-group">
+            <label>Estado</label>
+            <select class="form-control" [(ngModel)]="form.estado">
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-light">
+      <button class="btn btn-warning mr-2" (click)="guardarCliente()">
+        <i class="fas fa-save mr-1"></i>{{modoEdicion ? 'Guardar Cambios' : 'Crear Cliente'}}
+      </button>
+      <button class="btn btn-secondary" (click)="cancelarFormulario()">
+        <i class="fas fa-times mr-1"></i>Cancelar
+      </button>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="card mb-3">
+    <div class="card-body py-2">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="filtroTexto"
+                   placeholder="Buscar por nombre, identificación o contacto...">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <select class="form-control" [(ngModel)]="filtroEstado">
+            <option value="">Todos los estados</option>
+            <option value="activo">Activos</option>
+            <option value="inactivo">Inactivos</option>
+          </select>
+        </div>
+        <div class="col-md-3 text-right">
+          <small class="text-muted">{{clientesFiltrados.length}} cliente(s) encontrado(s)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de clientes -->
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>Identificación</th>
+              <th>Razón Social</th>
+              <th>Contacto</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Condición</th>
+              <th>Estado</th>
+              <th class="text-right">Total Cotizado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of clientesFiltrados" class="cotizacion-item-row">
+              <td><code>{{c.identificacion}}</code></td>
+              <td><strong>{{c.razonSocial}}</strong></td>
+              <td>{{c.contacto}}</td>
+              <td>
+                <a href="mailto:{{c.correo}}" class="text-muted small">{{c.correo}}</a>
+              </td>
+              <td>{{c.telefono}}</td>
+              <td><small>{{c.condicionTributaria?.replace('_', ' ')}}</small></td>
+              <td>
+                <span class="badge" [class.badge-success]="c.estado==='activo'" [class.badge-secondary]="c.estado!=='activo'">
+                  {{c.estado}}
+                </span>
+              </td>
+              <td class="text-right font-weight-bold">{{formatearMoneda(c.totalCotizado)}}</td>
+              <td>
+                <button class="btn btn-outline-primary btn-action mr-1" (click)="verDetalle(c)" title="Ver detalle">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-outline-warning btn-action mr-1" (click)="abrirFormularioEditar(c)" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-action mr-1" (click)="toggleEstado(c)"
+                        [title]="c.estado==='activo' ? 'Inactivar' : 'Activar'">
+                  <i class="fas" [class.fa-ban]="c.estado==='activo'" [class.fa-check]="c.estado!=='activo'"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-action" (click)="eliminarCliente(c)" title="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="clientesFiltrados.length === 0">
+              <td colspan="9" class="text-center text-muted py-5">
+                <i class="fas fa-users fa-3x mb-3 d-block"></i>No hay clientes que mostrar
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Vista: Detalle del cliente -->
+<div *ngIf="vista === 'detalle' && clienteDetalle">
+  <div class="row mb-3">
+    <div class="col">
+      <h3 class="page-title"><i class="fas fa-user mr-2 text-warning"></i>Detalle del Cliente</h3>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-outline-secondary" (click)="volver()">
+        <i class="fas fa-arrow-left mr-1"></i>Volver
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-header bg-dark text-white">
+          <h6 class="mb-0"><i class="fas fa-building mr-2"></i>Información General</h6>
+        </div>
+        <div class="card-body">
+          <table class="table table-sm table-borderless mb-0">
+            <tr><td class="text-muted w-40">Identificación:</td><td><strong>{{clienteDetalle.identificacion}}</strong></td></tr>
+            <tr><td class="text-muted">Razón Social:</td><td><strong>{{clienteDetalle.razonSocial}}</strong></td></tr>
+            <tr><td class="text-muted">Contacto:</td><td>{{clienteDetalle.contacto}}</td></tr>
+            <tr><td class="text-muted">Correo:</td><td>{{clienteDetalle.correo}}</td></tr>
+            <tr><td class="text-muted">Teléfono:</td><td>{{clienteDetalle.telefono}}</td></tr>
+            <tr><td class="text-muted">Dirección:</td><td>{{clienteDetalle.direccion}}</td></tr>
+            <tr><td class="text-muted">Condición:</td><td>{{clienteDetalle.condicionTributaria}}</td></tr>
+            <tr>
+              <td class="text-muted">Estado:</td>
+              <td>
+                <span class="badge" [class.badge-success]="clienteDetalle.estado==='activo'" [class.badge-secondary]="clienteDetalle.estado!=='activo'">
+                  {{clienteDetalle.estado}}
+                </span>
+              </td>
+            </tr>
+            <tr><td class="text-muted">Total Cotizado:</td><td class="text-success font-weight-bold">{{formatearMoneda(clienteDetalle.totalCotizado)}}</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h6 class="mb-0"><i class="fas fa-file-alt mr-2"></i>Historial de Cotizaciones</h6>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-sm mb-0">
+              <thead>
+                <tr><th>Número</th><th>Estado</th><th>Total</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cot of clienteDetalle.historialCotizaciones">
+                  <td>{{cot.numero}}</td>
+                  <td><span class="badge badge-secondary small">{{cot.estado}}</span></td>
+                  <td class="text-right">{{formatearMoneda(cot.total)}}</td>
+                </tr>
+                <tr *ngIf="!clienteDetalle.historialCotizaciones?.length">
+                  <td colspan="3" class="text-center text-muted py-3">Sin cotizaciones</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button class="btn btn-warning mr-2" (click)="abrirFormularioEditar(clienteDetalle); vista='lista'">
+      <i class="fas fa-edit mr-1"></i>Editar Cliente
+    </button>
+    <button class="btn btn-outline-secondary" (click)="toggleEstado(clienteDetalle); volver()">
+      <i class="fas fa-ban mr-1"></i>{{clienteDetalle.estado === 'activo' ? 'Inactivar' : 'Activar'}}
+    </button>
+  </div>
+</div>
