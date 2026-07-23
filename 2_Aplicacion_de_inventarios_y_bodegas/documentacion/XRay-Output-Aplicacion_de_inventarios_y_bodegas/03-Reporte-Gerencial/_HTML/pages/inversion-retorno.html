@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inversión y Retorno — Aplicacion de Inventarios y Bodegas</title>
+  <link rel="stylesheet" href="../report.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+<button class="mobile-toggle" aria-label="Menú">☰</button>
+<div class="report-layout">
+  <aside class="report-sidebar">
+    <div class="logo">Quantum App Modernization</div>
+    <nav>
+      <a href="index.html">Resumen Ejecutivo</a>
+      <a href="estado-actual.html">Estado Actual</a>
+      <a href="radar-brechas.html">Radar de Brechas</a>
+      <a href="riesgos-cuantificados.html">Riesgos Cuantificados</a>
+      <a href="oportunidad.html">Oportunidad</a>
+      <a href="opciones-caminos.html">Opciones y Caminos</a>
+      <a href="inversion-retorno.html" class="active">Inversión y Retorno</a>
+      <a href="proximos-pasos.html">Próximos Pasos</a>
+    </nav>
+    <div style="margin-top:auto; padding-top:var(--sp-6); border-top:1px solid var(--border-default);">
+      <small style="color:var(--text-muted);">SoftwareOne<br>2026-07-22</small>
+    </div>
+  </aside>
+  <main class="report-main">
+    <img src="https://www.softwareone.com/-/media/images/logos/softwareone-logo-blk.svg" alt="SoftwareOne" class="swo-logo">
+    <h1>Inversión y Retorno</h1>
+    <p class="subtitle">Aplicacion de Inventarios y Bodegas — ¿Cuánto invierto y cuándo recupero?</p>
+
+    <section>
+      <h2>Resumen de Inversión</h2>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-value">USD 6,000</div><div class="kpi-label">Inversión Total</div></div>
+        <div class="kpi-card"><div class="kpi-value">S</div><div class="kpi-label">Talla</div></div>
+        <div class="kpi-card"><div class="kpi-value">8-10 sem</div><div class="kpi-label">Duración</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--verde-6);">383%</div><div class="kpi-label">ROI 3 años</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--verde-6);">4 meses</div><div class="kpi-label">Punto Equilibrio</div></div>
+      </div>
+      <table class="report-table"><tbody>
+        <tr><td>Modalidad</td><td><strong>Precio cerrado</strong></td></tr>
+        <tr><td>True-up</td><td>Cero — sin costos adicionales</td></tr>
+        <tr><td>Modelo de pago</td><td>Por hitos de valor entregado</td></tr>
+      </tbody></table>
+    </section>
+
+    <section>
+      <h2>¿Qué incluye la inversión?</h2>
+      <table class="report-table">
+        <thead><tr><th>Fase</th><th>Entregable</th><th>Qué obtiene el cliente</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Advisory</strong></td><td>Diseño de la solución + Plan</td><td>Arquitectura validada antes de escribir código</td></tr>
+          <tr><td><strong>Fundamentos</strong></td><td>Infraestructura + CI/CD + Seguridad</td><td>Ambiente preparado, despliegue automático, acceso protegido</td></tr>
+          <tr><td><strong>Construcción Core</strong></td><td>Módulos de inventario</td><td>Funcionalidad principal en plataforma moderna</td></tr>
+          <tr><td><strong>Transición</strong></td><td>Migración + Validación + Soporte</td><td>Sistema en producción con acompañamiento</td></tr>
+        </tbody>
+      </table>
+      <div class="chart-container">
+        <div class="chart-title">Distribución de Inversión por Familia</div>
+        <canvas id="pie-inversion"></canvas>
+      </div>
+    </section>
+
+    <section>
+      <h2>ROI y Punto de Equilibrio</h2>
+      <div class="section-card">
+        <table class="report-table"><tbody>
+          <tr><td>Inversión (una vez)</td><td><strong>USD 6,000</strong></td></tr>
+          <tr><td>Costo de no actuar (anual)</td><td>USD 18,000</td></tr>
+          <tr><td>Costo de no actuar (3 años)</td><td>USD 60,000</td></tr>
+          <tr><td><strong>ROI a 3 años</strong></td><td><strong>383%</strong></td></tr>
+          <tr><td><strong>Punto de equilibrio</strong></td><td><strong>4 meses</strong></td></tr>
+        </tbody></table>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Proyección: Costo Acumulado vs Inversión</div>
+        <canvas id="roi-chart"></canvas>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cronograma de Facturación</h2>
+      <div class="chart-container">
+        <div class="chart-title">Hitos de Pago vinculados a Entregables</div>
+        <div id="gantt-facturacion" style="padding:var(--sp-4) 0; overflow-x:auto;"></div>
+      </div>
+      <table class="report-table">
+        <thead><tr><th>Hito</th><th>Entregable</th><th>%</th><th>USD</th><th>Semana</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Arquitectura validada + Plan</td><td>20%</td><td>USD 1,200</td><td>Semana 2</td></tr>
+          <tr><td>2</td><td>Ambiente + CI/CD + Seguridad</td><td>20%</td><td>USD 1,200</td><td>Semana 4</td></tr>
+          <tr><td>3</td><td>Módulos en producción</td><td>40%</td><td>USD 2,400</td><td>Semana 8</td></tr>
+          <tr><td>4</td><td>Migración + Validación</td><td>20%</td><td>USD 1,200</td><td>Semana 10</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Garantías del Modelo</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:var(--sp-4);">
+        <div class="section-card" style="text-align:center;"><div style="font-size:1.5rem; margin-bottom:var(--sp-2);">🔒</div><div style="font-size:0.929rem; font-weight:600; margin-bottom:var(--sp-1);">Precio cerrado</div><div style="font-size:0.786rem; color:var(--text-muted);">Sin sorpresas ni costos adicionales</div></div>
+        <div class="section-card" style="text-align:center;"><div style="font-size:1.5rem; margin-bottom:var(--sp-2);">✅</div><div style="font-size:0.929rem; font-weight:600; margin-bottom:var(--sp-1);">Pago por valor</div><div style="font-size:0.786rem; color:var(--text-muted);">Cada hito vinculado a entregable verificable</div></div>
+        <div class="section-card" style="text-align:center;"><div style="font-size:1.5rem; margin-bottom:var(--sp-2);">🤝</div><div style="font-size:0.929rem; font-weight:600; margin-bottom:var(--sp-1);">Equipo dedicado</div><div style="font-size:0.786rem; color:var(--text-muted);">Arquitectos senior + IA exclusivos</div></div>
+        <div class="section-card" style="text-align:center;"><div style="font-size:1.5rem; margin-bottom:var(--sp-2);">🛡️</div><div style="font-size:0.929rem; font-weight:600; margin-bottom:var(--sp-1);">Soporte post-go-live</div><div style="font-size:0.786rem; color:var(--text-muted);">Acompañamiento incluido</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Comparación: Invertir Ahora vs Esperar</h2>
+      <table class="report-table">
+        <thead><tr><th>Aspecto</th><th>Invertir Ahora</th><th>Esperar 12 meses</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Inversión</strong></td><td>USD 6,000 (una vez)</td><td>USD 6,000 + inflación</td></tr>
+          <tr><td><strong>Riesgo acumulado</strong></td><td>Neutralizado en 10 semanas</td><td>+USD 18,000 de exposición</td></tr>
+          <tr><td><strong>Vulnerabilidades</strong></td><td>Eliminadas por diseño</td><td>Activas y explotables 12 meses más</td></tr>
+          <tr><td><strong>Costo total (3 años)</strong></td><td>USD 6,000</td><td>USD 60,000 + inversión eventual</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--danger" style="margin-top:var(--sp-4);">
+        <p><strong>Cada mes de espera cuesta USD 1,500 en riesgos no resueltos</strong> — equivalente al 25% de la inversión total.</p>
+      </div>
+    </section>
+
+    <footer style="margin-top:var(--sp-12); padding-top:var(--sp-6); border-top:1px solid var(--border-default); color:var(--text-muted); font-size:0.857rem;">
+      Análisis elaborado por SoftwareOne · 2026-07-22
+    </footer>
+  </main>
+</div>
+<script src="../report.js"></script>
+<script>
+  const pageData = {
+    familias: { labels: ['Advisory','Código y Lógica','Datos','Interfaz','Automatización','Calidad','Seguridad','Monitoreo','Transición'], valores: [600,900,300,400,300,200,100,100,100] },
+    roi: { labels: ['Hoy','Mes 4','Año 1','Año 2','Año 3'], costo: [0, 6, 18, 38, 60], inversion: [6, 6, 6, 6, 6] },
+    gantt: [
+      {name:'Advisory', start:0, duration:2, color:'#288183'},
+      {name:'Fundamentos', start:2, duration:2, color:'#3366FF'},
+      {name:'Core', start:4, duration:4, color:'#2C8F92'},
+      {name:'Transición', start:8, duration:2, color:'#F4C542'}
+    ]
+  };
+  const colors = getFrontierColors();
+  frontierChartDefaults();
+  createPieChart('pie-inversion', pageData.familias.labels, pageData.familias.valores, {doughnut: true});
+  new Chart(document.getElementById('roi-chart'), {
+    type: 'bar',
+    data: { labels: pageData.roi.labels, datasets: [
+      { type: 'line', label: 'Costo acumulado no actuar', data: pageData.roi.costo, borderColor: colors.danger, backgroundColor: 'rgba(247,103,94,0.1)', fill: true, tension: 0.3, pointRadius: 5 },
+      { type: 'bar', label: 'Inversión (una vez)', data: pageData.roi.inversion, backgroundColor: colors.brand, borderRadius: 4, maxBarThickness: 50 }
+    ] },
+    options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: '#DADBDB' }, title: { display: true, text: 'USD (miles)' } }, x: { grid: { display: false } } }, plugins: { legend: { position: 'bottom' } } }
+  });
+  createGanttChart('gantt-facturacion', pageData.gantt);
+</script>
+</body>
+</html>

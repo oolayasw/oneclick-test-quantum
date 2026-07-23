@@ -1,0 +1,32 @@
+<div class="shell">
+  @if (isAuthenticated()) {
+    <aside class="sidebar">
+      <div>
+        <p class="eyebrow">QuoteFlow</p>
+        <h1>Gestion comercial</h1>
+        <p class="subtitle">Laboratorio modernizado en Angular 20 y .NET 8.</p>
+      </div>
+
+      <nav class="menu">
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/clientes" routerLinkActive="active">Clientes</a>
+        <a routerLink="/catalogo" routerLinkActive="active">Catalogo</a>
+        <a routerLink="/cotizaciones" routerLinkActive="active">Cotizaciones</a>
+        @if (canApprove()) {
+          <a routerLink="/aprobaciones" routerLinkActive="active">Aprobaciones</a>
+        }
+      </nav>
+
+      <section class="session-card">
+        <span class="pill">{{ session()?.role }}</span>
+        <strong>{{ session()?.name }}</strong>
+        <small>{{ session()?.email }}</small>
+        <button type="button" (click)="logout()">Cerrar sesion</button>
+      </section>
+    </aside>
+  }
+
+  <main class="content" [class.content--public]="!isAuthenticated()">
+    <router-outlet></router-outlet>
+  </main>
+</div>

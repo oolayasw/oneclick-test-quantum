@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riesgos Cuantificados — Aplicacion de Inventarios y Bodegas</title>
+  <link rel="stylesheet" href="../report.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+<button class="mobile-toggle" aria-label="Menú">☰</button>
+<div class="report-layout">
+  <aside class="report-sidebar">
+    <div class="logo">Quantum App Modernization</div>
+    <nav>
+      <a href="index.html">Resumen Ejecutivo</a>
+      <a href="estado-actual.html">Estado Actual</a>
+      <a href="radar-brechas.html">Radar de Brechas</a>
+      <a href="riesgos-cuantificados.html" class="active">Riesgos Cuantificados</a>
+      <a href="oportunidad.html">Oportunidad</a>
+      <a href="opciones-caminos.html">Opciones y Caminos</a>
+      <a href="inversion-retorno.html">Inversión y Retorno</a>
+      <a href="proximos-pasos.html">Próximos Pasos</a>
+    </nav>
+    <div style="margin-top:auto; padding-top:var(--sp-6); border-top:1px solid var(--border-default);">
+      <small style="color:var(--text-muted);">SoftwareOne<br>2026-07-22</small>
+    </div>
+  </aside>
+  <main class="report-main">
+    <img src="https://www.softwareone.com/-/media/images/logos/softwareone-logo-blk.svg" alt="SoftwareOne" class="swo-logo">
+    <h1>Riesgos Cuantificados</h1>
+    <p class="subtitle">Aplicacion de Inventarios y Bodegas — ¿Cuál es el costo de no actuar?</p>
+
+    <section>
+      <h2>Costo de No Modernizar</h2>
+      <div class="callout callout--danger"><p>La pregunta no es cuánto cuesta modernizar, sino <strong>cuánto cuesta NO hacerlo</strong>.</p></div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--rojo-6);">USD 18,000</div><div class="kpi-label">Exposición Anual</div></div>
+        <div class="kpi-card"><div class="kpi-value">USD 6,000</div><div class="kpi-label">Inversión para Modernizar</div></div>
+        <div class="kpi-card"><div class="kpi-value">1 : 3</div><div class="kpi-label">Ratio Inversión / Exposición</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--verde-6);">4 meses</div><div class="kpi-label">Payback</div></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Exposición Anual por Categoría</div>
+        <canvas id="pie-exposicion"></canvas>
+      </div>
+    </section>
+
+    <section>
+      <h2>Detalle por Categoría</h2>
+      <h3>Operacional (USD 8,000/año)</h3>
+      <table class="report-table">
+        <thead><tr><th>Escenario</th><th>Probabilidad</th><th>Impacto Unitario</th><th>Exposición</th></tr></thead>
+        <tbody>
+          <tr><td>Paralización por pérdida total de datos</td><td>Media</td><td>USD 4,000</td><td><strong>USD 4,000</strong></td></tr>
+          <tr><td>Corrupción de inventario por uso simultáneo</td><td>Alta</td><td>USD 2,500</td><td><strong>USD 2,500</strong></td></tr>
+          <tr><td>Despliegue fallido por proceso manual</td><td>Media</td><td>USD 1,500</td><td><strong>USD 1,500</strong></td></tr>
+        </tbody>
+      </table>
+      <h3>Financiero directo (USD 5,000/año)</h3>
+      <table class="report-table">
+        <thead><tr><th>Escenario</th><th>Probabilidad</th><th>Impacto Unitario</th><th>Exposición</th></tr></thead>
+        <tbody>
+          <tr><td>Compras erróneas por datos no confiables</td><td>Alta</td><td>USD 3,000</td><td><strong>USD 3,000</strong></td></tr>
+          <tr><td>Mantenimiento de emergencia</td><td>Media</td><td>USD 2,000</td><td><strong>USD 2,000</strong></td></tr>
+        </tbody>
+      </table>
+      <h3>Competitivo (USD 3,000/año)</h3>
+      <table class="report-table">
+        <thead><tr><th>Escenario</th><th>Probabilidad</th><th>Impacto Unitario</th><th>Exposición</th></tr></thead>
+        <tbody>
+          <tr><td>Imposibilidad de integrar con otros sistemas</td><td>Alta</td><td>USD 2,000</td><td><strong>USD 2,000</strong></td></tr>
+          <tr><td>Incapacidad de escalar a más bodegas</td><td>Media</td><td>USD 1,000</td><td><strong>USD 1,000</strong></td></tr>
+        </tbody>
+      </table>
+      <h3>Reputacional (USD 2,000/año)</h3>
+      <table class="report-table">
+        <thead><tr><th>Escenario</th><th>Probabilidad</th><th>Impacto Unitario</th><th>Exposición</th></tr></thead>
+        <tbody>
+          <tr><td>Pérdida de confianza del equipo en la herramienta</td><td>Alta</td><td>USD 2,000</td><td><strong>USD 2,000</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Acumulación a 3 Años</h2>
+      <div class="chart-container">
+        <div class="chart-title">Exposición Acumulada vs Inversión</div>
+        <canvas id="chart-acumulado"></canvas>
+      </div>
+      <table class="report-table">
+        <thead><tr><th>Año</th><th>Exposición Anual</th><th>Factor</th><th>Acumulada</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>USD 18,000</td><td>Base</td><td><strong>USD 18,000</strong></td></tr>
+          <tr><td>2</td><td>USD 20,000</td><td>+11%</td><td><strong>USD 38,000</strong></td></tr>
+          <tr><td>3</td><td>USD 22,000</td><td>+10%</td><td><strong>USD 60,000</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Comparativa: Inversión vs Exposición</h2>
+      <div class="section-card">
+        <table class="report-table">
+          <tbody>
+            <tr><td>Inversión para modernizar</td><td><strong>USD 6,000</strong></td></tr>
+            <tr><td>Exposición anual evitada</td><td>USD 18,000</td></tr>
+            <tr><td>Ratio Inversión / Exposición</td><td><strong>1 : 3</strong></td></tr>
+            <tr><td>Payback</td><td><strong>4 meses</strong></td></tr>
+            <tr><td>Exposición evitada en 3 años</td><td>USD 60,000</td></tr>
+            <tr><td><strong>ROI a 3 años</strong></td><td><strong>383%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Cada dólar invertido en modernización protege USD 3 de exposición anual.</p>
+    </section>
+
+    <section>
+      <h2>Notas Metodológicas</h2>
+      <div class="section-card" style="font-size:0.857rem; color:var(--text-muted);">
+        <ol style="padding-left:var(--sp-4); display:flex; flex-direction:column; gap:var(--sp-2);">
+          <li>Las estimaciones de impacto financiero son indicativas basadas en benchmarks del sector logístico.</li>
+          <li>Los valores marcados como estimados usan proxies estándar de la industria, no datos financieros reales del cliente.</li>
+          <li>Los riesgos y probabilidades se derivan exclusivamente del análisis técnico del código fuente.</li>
+          <li>El factor de crecimiento anual es conservador (asume cero incidentes mayores).</li>
+          <li>La comparativa asume el modelo de precio cerrado de SoftwareOne (sin true-ups).</li>
+        </ol>
+      </div>
+    </section>
+
+    <footer style="margin-top:var(--sp-12); padding-top:var(--sp-6); border-top:1px solid var(--border-default); color:var(--text-muted); font-size:0.857rem;">
+      Análisis elaborado por SoftwareOne · 2026-07-22
+    </footer>
+  </main>
+</div>
+<script src="../report.js"></script>
+<script>
+  const pageData = {
+    categorias: { labels: ['Operacional','Financiero','Competitivo','Reputacional'], valores: [8000, 5000, 3000, 2000] },
+    acumulado: { labels: ['Hoy','Año 1','Año 2','Año 3'], exposicion: [0, 18000, 38000, 60000], inversion: [6000, 6000, 6000, 6000] }
+  };
+  createPieChart('pie-exposicion', pageData.categorias.labels, pageData.categorias.valores, {doughnut: true});
+  const colors = getFrontierColors();
+  frontierChartDefaults();
+  new Chart(document.getElementById('chart-acumulado'), {
+    type: 'bar',
+    data: { labels: pageData.acumulado.labels, datasets: [
+      { type: 'line', label: 'Exposición acumulada', data: pageData.acumulado.exposicion, borderColor: colors.danger, backgroundColor: 'rgba(247,103,94,0.1)', fill: true, tension: 0.3, pointRadius: 5 },
+      { type: 'bar', label: 'Inversión (una vez)', data: pageData.acumulado.inversion, backgroundColor: colors.brand, borderRadius: 4, maxBarThickness: 50 }
+    ] },
+    options: { responsive: true, scales: { y: { beginAtZero: true, grid: { color: colors.gridLines }, title: { display: true, text: 'USD' } }, x: { grid: { display: false } } }, plugins: { legend: { position: 'bottom' } } }
+  });
+</script>
+</body>
+</html>

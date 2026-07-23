@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum QuickScan — Aplicacion de Inventarios y Bodegas | SoftwareOne</title>
+  <link rel="stylesheet" href="report.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    .cover-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: var(--sp-8);
+      text-align: center;
+      background: linear-gradient(135deg, var(--verde-1) 0%, var(--blanco) 50%, var(--azul-1) 100%);
+    }
+    .cover-logo { height: 36px; margin-bottom: var(--sp-12); }
+    .cover-title { font-size: 2.5rem; font-weight: 700; color: var(--gris-10); margin-bottom: var(--sp-4); }
+    .cover-subtitle { font-size: 1.286rem; color: var(--text-muted); margin-bottom: var(--sp-12); max-width: 600px; }
+    .cover-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--sp-4); max-width: 800px; width: 100%; margin-bottom: var(--sp-12); }
+    .cover-kpi { background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: var(--sp-4) var(--sp-6); }
+    .cover-kpi .value { font-size: 1.714rem; font-weight: 700; color: var(--brand-primary); }
+    .cover-kpi .label { font-size: 0.786rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: var(--sp-1); }
+    .cover-nav { display: flex; flex-direction: column; gap: var(--sp-3); max-width: 500px; width: 100%; }
+    .cover-nav a {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: var(--sp-4) var(--sp-6);
+      background: var(--surface-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: var(--text-default);
+      font-weight: 500;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .cover-nav a:hover { border-color: var(--brand-primary); box-shadow: 0 2px 8px rgba(40,129,131,0.12); }
+    .cover-nav a .num { 
+      display: flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--brand-primary-subtle); color: var(--brand-primary);
+      font-size: 0.786rem; font-weight: 700; flex-shrink: 0;
+    }
+    .cover-nav a .text { text-align: left; }
+    .cover-nav a .text .title { font-size: 0.929rem; }
+    .cover-nav a .text .desc { font-size: 0.786rem; color: var(--text-muted); font-weight: 400; }
+    .cover-footer { margin-top: var(--sp-12); color: var(--text-muted); font-size: 0.786rem; }
+    .cover-badge { 
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-2) var(--sp-4); border-radius: 9999px;
+      background: var(--rojo-1); color: var(--rojo-7);
+      font-size: 0.857rem; font-weight: 600; margin-bottom: var(--sp-6);
+    }
+    .cover-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--rojo-5); }
+  </style>
+</head>
+<body>
+
+<div class="cover-hero">
+
+  <img src="https://www.softwareone.com/-/media/images/logos/softwareone-logo-blk.svg" alt="SoftwareOne" class="cover-logo">
+
+  <div class="cover-badge">No Elegible — Requiere Preparación</div>
+
+  <h1 class="cover-title">Quantum QuickScan</h1>
+  <p class="cover-subtitle">Evaluación de elegibilidad para modernización de la <strong>Aplicación de Inventarios y Bodegas</strong></p>
+
+  <div class="cover-kpis">
+    <div class="cover-kpi"><div class="value">46.8</div><div class="label">Score / 100</div></div>
+    <div class="cover-kpi"><div class="value">S</div><div class="label">Talla QAM</div></div>
+    <div class="cover-kpi"><div class="value">600</div><div class="label">Créditos</div></div>
+    <div class="cover-kpi"><div class="value">USD 6,000</div><div class="label">Inversión</div></div>
+    <div class="cover-kpi"><div class="value">8–10 sem</div><div class="label">Duración</div></div>
+    <div class="cover-kpi"><div class="value">383%</div><div class="label">ROI 3 años</div></div>
+  </div>
+
+  <nav class="cover-nav">
+    <a href="pages/index.html">
+      <span class="num">1</span>
+      <span class="text">
+        <span class="title">Resumen Ejecutivo</span>
+        <span class="desc">Indicadores clave, diagnóstico y propuesta</span>
+      </span>
+    </a>
+    <a href="pages/estado-actual.html">
+      <span class="num">2</span>
+      <span class="text">
+        <span class="title">Estado Actual y Hallazgos</span>
+        <span class="desc">Situación técnica de la aplicación hoy</span>
+      </span>
+    </a>
+    <a href="pages/radar-brechas.html">
+      <span class="num">3</span>
+      <span class="text">
+        <span class="title">Radar de Brechas</span>
+        <span class="desc">Evaluación de las 10 dimensiones</span>
+      </span>
+    </a>
+    <a href="pages/riesgos-cuantificados.html">
+      <span class="num">4</span>
+      <span class="text">
+        <span class="title">Riesgos Cuantificados</span>
+        <span class="desc">Impacto financiero y operativo de no actuar</span>
+      </span>
+    </a>
+    <a href="pages/oportunidad.html">
+      <span class="num">5</span>
+      <span class="text">
+        <span class="title">Oportunidad de Modernización</span>
+        <span class="desc">Beneficios y habilitadores de negocio</span>
+      </span>
+    </a>
+    <a href="pages/opciones-caminos.html">
+      <span class="num">6</span>
+      <span class="text">
+        <span class="title">Opciones y Caminos</span>
+        <span class="desc">Variantes de modernización con trade-offs</span>
+      </span>
+    </a>
+    <a href="pages/inversion-retorno.html">
+      <span class="num">7</span>
+      <span class="text">
+        <span class="title">Inversión y Retorno</span>
+        <span class="desc">Análisis financiero y punto de equilibrio</span>
+      </span>
+    </a>
+    <a href="pages/proximos-pasos.html">
+      <span class="num">8</span>
+      <span class="text">
+        <span class="title">Próximos Pasos</span>
+        <span class="desc">Acciones inmediatas y cronograma</span>
+      </span>
+    </a>
+  </nav>
+
+  <footer class="cover-footer">
+    <p>SoftwareOne — Quantum App Modernization · Julio 2026</p>
+    <p>Cliente: SoftwareOne · Aplicación: Inventarios y Bodegas</p>
+  </footer>
+
+</div>
+
+<script src="report.js"></script>
+</body>
+</html>

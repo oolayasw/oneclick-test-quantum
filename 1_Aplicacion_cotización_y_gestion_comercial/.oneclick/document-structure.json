@@ -1,0 +1,19 @@
+{
+  "workflow": "app-modernization-advisory",
+  "phaseDeliverables": {
+    "01-assessment-tecnico": [
+      "documentacion/01.01-Resumen-Ejecutivo-Tecnico.md",
+      "documentacion/01.02-Alcance.md",
+      "documentacion/01.03-Event-Storming-AS-IS.md",
+      "documentacion/01.12-Recomendacion-Tecnica.md"
+    ],
+    "02-ejecucion-modernizacion": [
+      "OutPut/QuoteFlow.Api/Program.cs",
+      "OutPut/quoteflow-frontend/src/app/app.routes.ts"
+    ],
+    "03-validacion-local": [
+      "OutPut/QuoteFlow.Api/QuoteFlow.Api.csproj",
+      "OutPut/quoteflow-frontend/package.json"
+    ]
+  }
+}

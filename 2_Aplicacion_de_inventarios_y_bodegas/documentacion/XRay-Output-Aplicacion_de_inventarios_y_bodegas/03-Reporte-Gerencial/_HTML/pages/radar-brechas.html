@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar de Brechas — Aplicacion de Inventarios y Bodegas</title>
+  <link rel="stylesheet" href="../report.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+<button class="mobile-toggle" aria-label="Menú">☰</button>
+<div class="report-layout">
+  <aside class="report-sidebar">
+    <div class="logo">Quantum App Modernization</div>
+    <nav>
+      <a href="index.html">Resumen Ejecutivo</a>
+      <a href="estado-actual.html">Estado Actual</a>
+      <a href="radar-brechas.html" class="active">Radar de Brechas</a>
+      <a href="riesgos-cuantificados.html">Riesgos Cuantificados</a>
+      <a href="oportunidad.html">Oportunidad</a>
+      <a href="opciones-caminos.html">Opciones y Caminos</a>
+      <a href="inversion-retorno.html">Inversión y Retorno</a>
+      <a href="proximos-pasos.html">Próximos Pasos</a>
+    </nav>
+    <div style="margin-top:auto; padding-top:var(--sp-6); border-top:1px solid var(--border-default);">
+      <small style="color:var(--text-muted);">SoftwareOne<br>2026-07-22</small>
+    </div>
+  </aside>
+  <main class="report-main">
+    <img src="https://www.softwareone.com/-/media/images/logos/softwareone-logo-blk.svg" alt="SoftwareOne" class="swo-logo">
+    <h1>Radar de Brechas</h1>
+    <p class="subtitle">Aplicacion de Inventarios y Bodegas — Score: 46.8/100 · No Elegible</p>
+
+    <section>
+      <h2>Radar Visual de Brechas</h2>
+      <div class="chart-container">
+        <div class="chart-title">Score por Dimensión vs Target (3.5)</div>
+        <canvas id="radar-chart"></canvas>
+      </div>
+      <p style="text-align:center; color:var(--text-muted); font-size:0.857rem;">Las dimensiones que no alcanzan la línea azul de referencia (3.5) representan <strong>brechas</strong>. Las que la superan son <strong>fortalezas</strong>.</p>
+    </section>
+
+    <section>
+      <h2>Tabla de Scores por Dimensión</h2>
+      <table class="report-table">
+        <thead><tr><th>#</th><th>Dimensión</th><th>Score</th><th>Peso</th><th>Clasificación</th></tr></thead>
+        <tbody id="scores-table"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Top-3 Brechas Críticas</h2>
+      <table class="report-table">
+        <thead><tr><th>#</th><th>Dimensión</th><th>Score</th><th>Impacto en el negocio</th><th>Acción de cierre</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>DevOps</td><td><span class="badge badge--danger">0.00</span></td><td>No existe forma automatizada de desplegar ni validar cambios</td><td>Implementar automatización completa del ciclo</td></tr>
+          <tr><td>2</td><td>Arquitectura</td><td><span class="badge badge--danger">1.25</span></td><td>El sistema es un bloque único — cualquier cambio afecta toda la operación</td><td>Reconstruir con separación clara de responsabilidades</td></tr>
+          <tr><td>3</td><td>Cloud Readiness</td><td><span class="badge badge--danger">1.25</span></td><td>Solo funciona en un equipo específico — no escala</td><td>Containerizar y preparar para despliegue en la nube</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>¿Qué Significa Esto?</h2>
+      <h3>Brechas que se solucionan en el proyecto de modernización</h3>
+      <div style="display:flex; flex-direction:column; gap:var(--sp-3); margin-bottom:var(--sp-6);">
+        <div class="callout callout--brand" style="margin-bottom:0;"><p><strong>DevOps (score 0):</strong> Se implementa automatización completa — despliegue con un clic y validaciones automáticas.</p></div>
+        <div class="callout callout--brand" style="margin-bottom:0;"><p><strong>Arquitectura (score 1.25):</strong> Se reconstruye separando funcionalidades en módulos independientes.</p></div>
+        <div class="callout callout--brand" style="margin-bottom:0;"><p><strong>Cloud Readiness (score 1.25):</strong> Se prepara para la nube desde el diseño — escalable y recuperable.</p></div>
+        <div class="callout callout--brand" style="margin-bottom:0;"><p><strong>Seguridad (score 1.75):</strong> Se implementa protección integral desde el diseño.</p></div>
+      </div>
+      <h3>Fortalezas que aceleran la ejecución</h3>
+      <div style="display:flex; flex-direction:column; gap:var(--sp-3);">
+        <div class="callout callout--success" style="margin-bottom:0;"><p><strong>Código Fuente (score 4.25):</strong> Completo, legible y permite extraer reglas de negocio sin riesgo de pérdida.</p></div>
+        <div class="callout callout--success" style="margin-bottom:0;"><p><strong>Datos (score 3.25):</strong> Modelo de datos claro — la reconstrucción tiene camino directo.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Score Consolidado</h2>
+      <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+        <div class="kpi-card"><div class="kpi-value">46.8</div><div class="kpi-label">Score Global / 100</div></div>
+        <div class="kpi-card"><div class="kpi-value">No Elegible</div><div class="kpi-label">Clasificación</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--rojo-6);">3</div><div class="kpi-label">Brechas Críticas</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--amarillo-7);">3</div><div class="kpi-label">Brechas Moderadas</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--verde-6);">1</div><div class="kpi-label">Fortalezas</div></div>
+      </div>
+    </section>
+
+    <footer style="margin-top:var(--sp-12); padding-top:var(--sp-6); border-top:1px solid var(--border-default); color:var(--text-muted); font-size:0.857rem;">
+      Análisis elaborado por SoftwareOne · 2026-07-22
+    </footer>
+  </main>
+</div>
+<script src="../report.js"></script>
+<script>
+  const pageData = {labels:['Elegibilidad','Código Fuente','Arquitectura','Datos y BD','Cloud Readiness','DevOps','SMEs','Documentación','Seguridad','Drivers'],scores:[3.25,4.25,1.25,3.25,1.25,0,2.5,2,1.75,3]};
+  createRadarChart('radar-chart', pageData.labels, pageData.scores, 3.5);
+  const pesos = ['12%','12%','12%','10%','10%','8%','12%','8%','8%','8%'];
+  const tbody = document.getElementById('scores-table');
+  pageData.labels.forEach((label, i) => {
+    const score = pageData.scores[i];
+    const cls = score >= 3.5 ? 'success' : score >= 1.5 ? 'warning' : 'danger';
+    const txt = score >= 3.5 ? 'Fortaleza' : score >= 1.5 ? 'Brecha moderada' : 'Brecha crítica';
+    tbody.innerHTML += `<tr><td>D${i+1}</td><td>${label}</td><td>${score}</td><td>${pesos[i]}</td><td><span class="badge badge--${cls}">${txt}</span></td></tr>`;
+  });
+</script>
+</body>
+</html>
