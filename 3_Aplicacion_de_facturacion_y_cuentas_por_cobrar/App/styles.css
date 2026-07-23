@@ -1,0 +1,127 @@
+body {
+  background: #f3f4f8;
+  color: #1f2933;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.app-shell {
+  margin-top: 10px;
+}
+
+.sidebar {
+  background: #1b2a4e;
+  min-height: 98vh;
+  color: #ffffff;
+  padding-top: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  margin: 0 0 18px;
+  font-weight: 700;
+}
+
+.role-selector {
+  margin-bottom: 20px;
+}
+
+.nav-sections li a {
+  color: #dce6ff;
+  border-radius: 0;
+}
+
+.nav-sections li.active a,
+.nav-sections li a:hover {
+  background: #f9a826;
+  color: #111827;
+}
+
+.main-content {
+  padding: 25px;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border-left: 6px solid #1b2a4e;
+  margin-bottom: 15px;
+  padding: 12px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.06);
+}
+
+.kpi-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.form-panel {
+  margin-top: 15px;
+}
+
+.items-table {
+  margin-top: 15px;
+}
+
+.totals-row {
+  margin: 10px 0;
+}
+
+.total-box {
+  background: #1b2a4e;
+  color: #ffffff;
+  padding: 9px;
+  border-radius: 4px;
+  margin-top: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.action-row .btn {
+  margin-right: 5px;
+}
+
+.filters-row {
+  margin-bottom: 12px;
+}
+
+.detail-panel {
+  margin-top: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.audit-detail {
+  max-width: 540px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    min-height: auto;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .total-box {
+    margin-top: 8px;
+  }
+}
